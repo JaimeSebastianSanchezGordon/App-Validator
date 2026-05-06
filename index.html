@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validador de Lote · Control Batch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<main class="sheet">
+
+  <header class="doc-header">
+    <div class="doc-meta">
+      <strong>Auditoría Informática</strong> — ISWD833<br>
+      Taller N.º 3 · Controles de Aplicación<br>
+      Sistema receptor de lotes batch<br>
+      <span class="group-members">Grupo 3: Anthony Chiluiza · Ariel Mora · Fernando Nagua · Sebastián Sánchez · Gabriel Vásconez · Santos Villarreal</span>
+    </div>
+    <div class="doc-title-block">
+      <div class="doc-eyebrow">Mini aplicación · Validador</div>
+      <h1>Control <em>Batch</em></h1>
+    </div>
+  </header>
+
+  <p class="intro">
+    Esta aplicación actúa como el <strong>sistema receptor</strong> de un lote batch.
+    Valida el formato del archivo <code>.txt</code>, recalcula los totales de forma
+    independiente y los compara contra la cabecera declarada por el sistema origen.
+    Si todos los controles se cumplen, el lote se acepta; en caso contrario, se rechaza.
+  </p>
+
+  <div class="section-label">01 · Carga del archivo</div>
+
+  <div class="upload-card">
+    <div class="file-zone">
+      <label for="fileInput" class="file-label">Seleccionar archivo</label>
+      <input type="file" id="fileInput" accept=".txt">
+      <span id="fileName" class="file-name empty">Ningún archivo seleccionado</span>
+    </div>
+    <button id="validateBtn" class="validate-btn" disabled>Validar</button>
+  </div>
+
+  <div id="results">
+    <div class="section-label">02 · Resultado de la validación</div>
+
+    <div id="verdict" class="verdict"></div>
+
+    <div class="section-label">03 · Detalle de comprobaciones</div>
+    <div id="checks" class="checks"></div>
+
+    <div id="totalsSection" style="display:none">
+      <div class="section-label">04 · Totales (declarado vs. recalculado)</div>
+      <div class="totals-grid">
+        <div id="declaredCard" class="total-card">
+          <div class="total-label">Declarado en cabecera</div>
+          <div id="declaredTotal" class="total-value"></div>
+        </div>
+        <div id="recalcCard" class="total-card">
+          <div class="total-label">Recalculado por el receptor</div>
+          <div id="recalcTotal" class="total-value"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="breakdownSection" style="display:none">
+      <div class="section-label">05 · Subtotales por grupo principal</div>
+      <div class="breakdown">
+        <div class="breakdown-header">
+          <span>Grupos 1 a 5</span>
+          <span id="rowCountInfo"></span>
+        </div>
+        <table class="subtotals">
+          <thead>
+            <tr>
+              <th>Grupo</th>
+              <th class="num">Subtotal recalculado</th>
+            </tr>
+          </thead>
+          <tbody id="subtotalsBody"></tbody>
+          <tfoot>
+            <tr>
+              <td>Suma de los 5 grupos</td>
+              <td class="num" id="sumOfGroups"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Receptor batch · Validación independiente · Taller de Auditoría Informática
+  </div>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
