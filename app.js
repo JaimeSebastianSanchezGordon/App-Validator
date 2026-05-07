@@ -248,7 +248,7 @@ function validateSeparator(dataLines) {
   // Recorrer cada línea de datos y verificar que tenga exactamente 2 campos: código y monto
   for (let i = 0; i < dataLines.length; i++) {
     const line  = dataLines[i];
-    const parts = line.split(TAB);
+    const parts = line.replace(/\t+$/, '').split(TAB);
 
     // Si al dividir por tabulador se obtiene menos de 2 partes, no se está usando el separador correcto
     if (parts.length < 2) {
