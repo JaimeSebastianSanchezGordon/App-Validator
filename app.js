@@ -1,8 +1,3 @@
-/* ============================================================
-   VALIDADOR DE LOTE BATCH
-   Implementa todas las validaciones de la sección 2.2 del taller.
-   ============================================================ */
-
 const TAB = '\t';
 const FILENAME_REGEX = /^T\d{4}B[1-4]\d{8}\.txt$/;
 const DATE_REGEX = /^\d{2}\/\d{2}\/\d{4}$/;
@@ -248,7 +243,7 @@ function validateSeparator(dataLines) {
   // Recorrer cada línea de datos y verificar que tenga exactamente 2 campos: código y monto
   for (let i = 0; i < dataLines.length; i++) {
     const line  = dataLines[i];
-    const parts = line.replace(/\t+$/, '').split(TAB);
+    const parts = line.split(TAB);
 
     // Si al dividir por tabulador se obtiene menos de 2 partes, no se está usando el separador correcto
     if (parts.length < 2) {
